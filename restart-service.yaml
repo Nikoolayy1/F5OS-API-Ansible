@@ -1,0 +1,15 @@
+   - name: Resart Service
+      ansible.builtin.uri:
+              url: "https://10.10.10.12/api/data/openconfig-system:system/f5-system-diagnostics-qkview:diagnostics/f5-system-diagnostics-docker:os-utils/f5-system-diagnostics-docker:docker/f5-system-diagnostics-docker:restart"
+              method: POST
+              headers:
+                Content-Type: application/yang-data+json
+                X-Auth-Token: "{{ token }}"
+              validate_certs: false
+              status_code:
+              - 200
+              body_format: json
+              body:
+                node: platform
+                service: snmpd
+      register: primary_key
